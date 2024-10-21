@@ -14,5 +14,5 @@ data:
     ANTHROPIC = "{{ .Values.config.apiKeys.anthropic }}"
 
     [API_ENDPOINTS]
-    SEARXNG = "{{ .Values.config.perplexica.searxng.apiUrl }}"
-    OLLAMA = "{{ {{ .Values.config.perplexica.backend.apiUrl }}}}"
+    SEARXNG = "{{ .Values.config.searxng.host }}"
+    OLLAMA = "{{ {{ .Values.config.ollama.host }}}}"

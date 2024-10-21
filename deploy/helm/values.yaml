@@ -30,13 +30,13 @@ perplexica:
       general:
         similarityMeasure: "cosine" # "cosine" or "dot"
     searxng:
-      url: http://perplexica-searxng:8080
+      host: http://perplexica-searxng:8080
+    ollama:
+      host: ""       # Ollama API URL - http://host.docker.internal:11434
     apiKeys:
       openai: ""    # OpenAI API key - sk-1234567890abcdef1234567890abcdef
       groq: ""      # Groq API key - gsk_1234567890abcdef1234567890abcdef
       anthropic: "" # Anthropic API key - sk-ant-1234567890abcdef1234567890abcdef
-    ollama:
-      url: ""       # Ollama API URL - http://host.docker.internal:11434
 
 searxng:
   enabled: true
