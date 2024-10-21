@@ -22,6 +22,6 @@ spec:
         - containerPort: {{ .Values.perplexica.frontend.service.port }}
         env:
         - name: NEXT_PUBLIC_API_URL
-          value: {{ .Values.perplexica.config.nextPublicApiUrl }}
+          value: {{ .Values.config.perplexica.backend.apiUrl }}
         - name: NEXT_PUBLIC_WS_URL
-          value: {{ .Values.perplexica.config.nextPublicWsUrl }}
+          value: {{ .Values.config.perplexica.backend.wsUrl }}

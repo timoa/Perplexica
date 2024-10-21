@@ -4,4 +4,15 @@ metadata:
   name: "{{ .Release.Name }}-config"
 data:
   config.toml: |
-    # Add your config.toml content here
+    [GENERAL]
+    PORT = "{{ .Values.perplexica.backend.service.port }}"
+    SIMILARITY_MEASURE = "{{ .Values.perplexica.config.perplexica.general.similarityMeasure }}"
+
+    [API_KEYS]
+    OPENAI = "{{ .Values.config.apiKeys.openai }}"
+    GROQ = "{{ .Values.config.apiKeys.groq }}"
+    ANTHROPIC = "{{ .Values.config.apiKeys.anthropic }}"
+
+    [API_ENDPOINTS]
+    SEARXNG = "{{ .Values.config.perplexica.searxng.apiUrl }}"
+    OLLAMA = "{{ {{ .Values.config.perplexica.backend.apiUrl }}}}"
