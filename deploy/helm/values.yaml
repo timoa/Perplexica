@@ -25,8 +25,8 @@ perplexica:
   config:
     perplexica:
       backend:
-        apiUrl: http://127.0.0.1:3001/api
-        wsUrl: ws://127.0.0.1:3001
+        apiUrl: http://perplexica-backend:3001/api
+        wsUrl: ws://perplexica-backend:3001
       general:
         similarityMeasure: "cosine"   # "cosine" or "dot"
     searxng:
