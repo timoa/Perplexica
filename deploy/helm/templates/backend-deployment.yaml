@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-backend"
+  labels:
+    app: perplexica-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: perplexica-backend
+  template:
+    metadata:
+      labels:
+        app: perplexica-backend
+    spec:
+      containers:
+      - name: perplexica-backend
+        image: "{{ .Values.perplexica.backend.image.repository }}:{{ .Values.perplexica.backend.image.tag }}"
+        imagePullPolicy: {{ .Values.perplexica.backend.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.perplexica.backend.service.port }}
+        env:
+        - name: SEARXNG_API_URL
+          value: {{ .Values.perplexica.config.searxngApiUrl }}
+        volumeMounts:
+        - name: backend-data
+          mountPath: /home/perplexica/data
+        - name: config
+          mountPath: /home/perplexica/config.toml
+          subPath: config.toml
+      volumes:
+      - name: backend-data
+        persistentVolumeClaim:
+          claimName: "{{ .Release.Name }}-backend-pvc"
+      - name: config
+        configMap:
+          name: "{{ .Release.Name }}-config"

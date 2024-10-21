@@ -1,0 +1,30 @@
+{{- if .Values.searxng.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-searxng"
+  labels:
+    app: searxng
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: searxng
+  template:
+    metadata:
+      labels:
+        app: searxng
+    spec:
+      containers:
+      - name: searxng
+        image: "{{ .Values.searxng.image.repository }}:{{ .Values.searxng.image.tag }}"
+        imagePullPolicy: {{ .Values.searxng.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.searxng.service.port }}
+        volumeMounts:
+        - name: searxng-config
+          mountPath: /etc/searxng
+      volumes:
+      - name: searxng-config
+        emptyDir: {}
+{{- end }}

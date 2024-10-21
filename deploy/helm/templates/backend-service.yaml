@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Release.Name }}-backend"
+spec:
+  selector:
+    app: perplexica-backend
+  ports:
+    - protocol: TCP
+      port: {{ .Values.perplexica.backend.service.port }}
+      targetPort: {{ .Values.perplexica.backend.service.port }}

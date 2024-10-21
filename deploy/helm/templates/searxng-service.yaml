@@ -1,0 +1,13 @@
+{{- if .Values.searxng.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Release.Name }}-searxng"
+spec:
+  selector:
+    app: searxng
+  ports:
+    - protocol: TCP
+      port: {{ .Values.searxng.service.port }}
+      targetPort: {{ .Values.searxng.service.port }}
+{{- end }}

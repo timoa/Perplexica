@@ -1,0 +1,41 @@
+# Default values for perplexica.
+# This is a YAML-formatted file.
+
+perplexica:
+  backend:
+    image:
+      repository: itzcrazykns1337/perplexica-backend
+      tag: main
+      pullPolicy: IfNotPresent
+    service:
+      port: 3001
+    persistence:
+      storageClass: ""
+      accessMode: ReadWriteOnce
+      size: 1Gi
+
+  frontend:
+    image:
+      repository: itzcrazykns1337/perplexica-frontend
+      tag: main
+      pullPolicy: IfNotPresent
+    service:
+      port: 3000
+
+  config:
+    searxngApiUrl: http://perplexica-searxng:8080
+    nextPublicApiUrl: http://127.0.0.1:3001/api
+    nextPublicWsUrl: ws://127.0.0.1:3001
+
+searxng:
+  enabled: true
+  image:
+    repository: docker.io/searxng/searxng
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    port: 8080
+  persistence:
+    storageClass: ""
+    accessMode: ReadWriteOnce
+    size: 1Gi
